@@ -45,7 +45,20 @@
         </div>
         <div class="hero-media">
           <div class="media-card">
-            <div class="media-frame"></div>
+            <div class="carousel" id="product-carousel" aria-label="Галерея дивана Rocky">
+              <button class="carousel-btn carousel-btn-prev" type="button" aria-label="Предыдущее фото">‹</button>
+              <div class="carousel-track">
+                <img class="media-frame carousel-image active" src="images/carousel 1.jpg" alt="Диван Rocky, фото 1" />
+                <img class="media-frame carousel-image" src="images/carousel 2.jpg" alt="Диван Rocky, фото 2" />
+                <img class="media-frame carousel-image" src="images/carousel 3.jpg" alt="Диван Rocky, фото 3" />
+              </div>
+              <button class="carousel-btn carousel-btn-next" type="button" aria-label="Следующее фото">›</button>
+              <div class="carousel-dots" aria-hidden="true">
+                <span class="carousel-dot active"></span>
+                <span class="carousel-dot"></span>
+                <span class="carousel-dot"></span>
+              </div>
+            </div>
             <div class="media-caption">Фото продукта</div>
           </div>
         </div>
@@ -278,11 +291,41 @@
 
     <section class="section cta" id="buy">
       <div class="container cta-inner">
-        <div>
+        <div class="order-copy">
           <h2>Принесите Rocky домой.</h2>
-          <p>Выберите размер и цвет, а оформление займет пару минут.</p>
+          <p>Выберите размер, конфигурацию и ткань, а оформление займет пару минут.</p>
         </div>
-        <a class="btn btn-primary" href="#top">Купить Rocky</a>
+        <form class="order-form" id="order-form">
+          <label class="order-field">
+            <span>Размер</span>
+            <select name="size" required>
+              <option value="" selected disabled>Выберите размер</option>
+              <option value="2-местный">2-местный</option>
+              <option value="3-местный">3-местный</option>
+              <option value="угловой">Угловой</option>
+            </select>
+          </label>
+          <label class="order-field">
+            <span>Конфигурация</span>
+            <select name="configuration" required>
+              <option value="" selected disabled>Выберите конфигурацию</option>
+              <option value="пенополиуретан">Пенополиуретан</option>
+              <option value="независимый пружинный блок">Независимый пружинный блок</option>
+            </select>
+          </label>
+          <label class="order-field">
+            <span>Ткань</span>
+            <select name="fabric" required>
+              <option value="" selected disabled>Выберите ткань</option>
+              <option value="велюр">Велюр</option>
+              <option value="вельвет">Вельвет</option>
+              <option value="рогожка">Рогожка</option>
+              <option value="замша">Замша</option>
+            </select>
+          </label>
+          <button class="btn btn-primary" type="submit">Оформить заказ</button>
+          <p class="order-status" id="order-status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>

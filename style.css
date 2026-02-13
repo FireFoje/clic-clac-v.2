@@ -194,6 +194,69 @@ img {
   margin-bottom: 12px;
 }
 
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.carousel-track {
+  min-height: 280px;
+  display: flex;
+  transition: transform 0.55s ease;
+  will-change: transform;
+  touch-action: pan-y;
+}
+
+.carousel-image {
+  display: block;
+  width: 100%;
+  flex: 0 0 100%;
+  margin-bottom: 0;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.carousel-btn-prev {
+  left: 10px;
+}
+
+.carousel-btn-next {
+  right: 10px;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #c9beb5;
+}
+
+.carousel-dot.active {
+  background: var(--accent);
+}
+
 .media-caption {
   font-size: 13px;
   color: var(--muted);
@@ -350,6 +413,47 @@ img {
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
+}
+.order-copy {
+  max-width: 420px;
+}
+
+.order-form {
+  display: grid;
+  gap: 12px;
+  width: min(420px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.order-field {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.order-field select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font: inherit;
+  background: #fff;
+  color: var(--ink);
+}
+
+.order-field select:focus {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 1px;
+}
+
+.order-status {
+  min-height: 22px;
+  font-size: 14px;
+  color: var(--muted);
 }
 
 .btn {
