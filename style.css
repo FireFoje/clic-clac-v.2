@@ -85,6 +85,11 @@ img {
   background: var(--accent-soft);
 }
 
+.nav a.active-link {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
 .nav-toggle {
   display: none;
   border: 1px solid var(--line);
@@ -105,9 +110,12 @@ img {
 
 .home-hero {
   position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: flex-start;
   background:
     linear-gradient(135deg, rgba(246, 238, 229, 0.55) 0%, rgba(247, 239, 231, 0.5) 55%, rgba(239, 229, 220, 0.45) 100%),
-    url("images/kid at the sofa.PNG") center/cover no-repeat;
+    url("images/kid at the sofa.PNG") center center / cover no-repeat;
   border-bottom: 1px solid var(--line);
 }
 
@@ -121,6 +129,7 @@ img {
 .home-hero .hero-grid {
   position: relative;
   z-index: 1;
+  padding-top: 48px;
 }
 
 .home-hero .hero-media {
@@ -134,7 +143,11 @@ img {
 .home-hero .hero-copy .eyebrow,
 .home-hero .hero-copy .lead,
 .home-hero .hero-copy .trust-line {
-  color: #302822;
+  color: #26201b;
+}
+
+.home-hero .hero-actions {
+  margin-top: 90px;
 }
 
 
@@ -192,6 +205,7 @@ img {
   border-radius: var(--radius);
   object-fit: cover;
   margin-bottom: 12px;
+  transition: transform 0.45s ease;
 }
 
 .carousel {
@@ -213,6 +227,12 @@ img {
   width: 100%;
   flex: 0 0 100%;
   margin-bottom: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .carousel:hover .carousel-image.active {
+    transform: scale(1.03);
+  }
 }
 
 .carousel-btn {
@@ -314,6 +334,7 @@ img {
   border-radius: var(--radius);
   padding: 20px;
   box-shadow: 0 8px 20px rgba(43, 36, 32, 0.08);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, opacity 0.35s ease;
 }
 
 .card h3,
@@ -331,6 +352,17 @@ img {
   margin-top: 10px;
   font-weight: 600;
   color: var(--ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover,
+  .specs-card:hover,
+  .trust-card:hover,
+  .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(43, 36, 32, 0.12);
+    border-color: #dbcfc5;
+  }
 }
 
 .review-snapshot {
@@ -394,13 +426,26 @@ img {
 }
 
 .faq-panel {
-  display: none;
-  padding: 0 16px 16px;
+  display: block;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.25s ease;
+  padding: 0 16px;
   color: var(--muted);
 }
 
 .faq-item.active + .faq-panel {
-  display: block;
+  opacity: 1;
+  padding: 0 16px 16px;
+}
+
+.faq-icon {
+  transition: transform 0.25s ease;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
 }
 
 .cta {
@@ -476,6 +521,23 @@ img {
   background: var(--accent-strong);
 }
 
+.btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.btn-primary.pulse-active {
+  animation: cta-pulse 2s ease-in-out infinite;
+}
+
+@keyframes cta-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(182, 115, 74, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(182, 115, 74, 0.18);
+  }
+}
+
 .btn-ghost {
   border-color: var(--accent);
   color: var(--accent-strong);
@@ -548,6 +610,38 @@ img {
   color: var(--muted);
 }
 
+.section.reveal-init {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.section.reveal-init.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.stagger-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: var(--stagger-delay, 0ms);
+}
+
+.step-active {
+  border-color: #d5b39a;
+  box-shadow: 0 10px 24px rgba(182, 115, 74, 0.2);
+}
+
+.review-card.is-dimmed {
+  opacity: 0.56;
+}
+
 @media (max-width: 900px) {
   .nav {
     position: absolute;
@@ -586,5 +680,24 @@ img {
   .review-snapshot {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .section.reveal-init,
+  .stagger-item {
+    opacity: 1;
+    transform: none;
   }
 }
