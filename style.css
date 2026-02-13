@@ -127,6 +127,16 @@ img {
   display: none;
 }
 
+.home-hero .hero-copy {
+  color: #1f1b18;
+}
+
+.home-hero .hero-copy .eyebrow,
+.home-hero .hero-copy .lead,
+.home-hero .hero-copy .trust-line {
+  color: #302822;
+}
+
 
 .hero-grid {
   display: grid;
