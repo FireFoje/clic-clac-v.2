@@ -113,17 +113,12 @@ img {
   min-height: 90vh;
   display: flex;
   align-items: flex-start;
-  background:
-    linear-gradient(135deg, rgba(246, 238, 229, 0.55) 0%, rgba(247, 239, 231, 0.5) 55%, rgba(239, 229, 220, 0.45) 100%),
-    url("images/kid at the sofa.PNG") center center / cover no-repeat;
+  background: url("images/index/background/backgr_photo.png") center center / cover no-repeat;
   border-bottom: 1px solid var(--line);
 }
 
 .home-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(247, 243, 239, 0.12);
+  content: none;
 }
 
 .home-hero .hero-grid {
@@ -189,6 +184,17 @@ img {
 .trust-line {
   font-size: 14px;
   color: var(--muted);
+}
+
+.placeholder {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border: 1px dashed #cdbcae;
+  border-radius: 12px;
+  background: #fff9f4;
+  color: #745f4f;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 .media-card {
@@ -701,3 +707,8 @@ img {
     transform: none;
   }
 }
+
+
+
+
+
