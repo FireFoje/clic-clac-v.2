@@ -76,6 +76,14 @@ img {
   gap: 28px;
 }
 
+.control-panel {
+  padding: 12px 16px;
+  margin: 8px 0;
+  border-radius: 14px;
+  border: 1px solid #d8b89e;
+  background: linear-gradient(135deg, rgba(255, 248, 242, 0.95) 0%, rgba(247, 234, 222, 0.95) 100%);
+  box-shadow: 0 8px 22px rgba(78, 46, 24, 0.12);
+}
 .brand {
   font-family: "Nunito", system-ui, sans-serif;
   font-weight: 700;
@@ -155,7 +163,7 @@ img {
 
 .home-hero {
   position: relative;
-  height: calc(100svh - 65px);
+  height: calc(100svh - -1px);
   min-height: calc(100svh - 72px);
   padding: 0;
   display: flex;
@@ -181,8 +189,8 @@ img {
   inset: 0 auto 0 0;
   width: 30%;
   background: linear-gradient(to right, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   mask-image: linear-gradient(to right, #000 0%, #000 42%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, #000 0%, #000 42%, transparent 100%);
   pointer-events: none;
@@ -1201,9 +1209,46 @@ img {
   gap: 10px;
 }
 
+.roki-comfort-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.roki-comfort-grid > .roki-card {
+  height: 100%;
+}
+
+.roki-comfort-grid > .roki-card p {
+  min-height: 4.8em;
+}
+
+.roki-comfort-gif {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
 .roki-card p {
   color: var(--muted);
 }
+.double-size-title {
+  font-size: 1.90em;
+  line-height: 1.15;
+}
+
+.under-case {
+  font-size: 1.90em;
+  line-height: 1.15;
+}
+
+
+
 
 .armrest-schemes {
   display: grid;
@@ -1297,6 +1342,10 @@ img {
   .roki-hero-advantages {
     grid-template-columns: 1fr 1fr;
   }
+
+  .roki-comfort-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 700px) {
@@ -1308,6 +1357,11 @@ img {
     font-size: clamp(1.85rem, 8vw, 2.25rem);
   }
 }
+
+
+
+
+
 
 
 
