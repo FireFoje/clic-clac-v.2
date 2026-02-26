@@ -110,10 +110,12 @@ img {
 
 .home-hero {
   position: relative;
-  min-height: 86vh;
+  height: calc(100svh - 65px);
+  min-height: calc(100svh - 72px);
+  padding: 0;
   display: flex;
   align-items: center;
-  background: url("images/index/background/backgr_photo.png") center center / cover no-repeat;
+  background: url("images/kid at the sofa.PNG") center center / cover no-repeat;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
@@ -934,7 +936,9 @@ img {
   }
 
   .home-hero {
-    min-height: auto;
+    height: calc(100svh - 64px);
+    min-height: calc(100svh - 64px);
+    background-position: center top;
   }
 
   .home-hero .hero-copy h1 {
@@ -1027,3 +1031,196 @@ img {
     transform: none;
   }
 }
+
+/* Roki landing structure */
+.roki-hero-grid {
+  grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
+  min-height: 100%;
+  align-items: center;
+  padding-top: clamp(16px, 3.2vh, 34px);
+  padding-bottom: clamp(14px, 2.8vh, 30px);
+  margin-left: 0;
+}
+
+.home-hero .hero-copy.roki-hero-copy {
+  grid-column: 1;
+  justify-self: start;
+  width: 100%;
+  transform: none;
+  margin: 0;
+  max-width: 560px;
+  padding: 26px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(7px);
+}
+
+.roki-hero-copy h1 {
+  font-size: clamp(2rem, 5vw, 3.15rem);
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+.roki-lead {
+  max-width: 620px;
+  color: #4e3f34;
+  margin-bottom: 16px;
+}
+
+.roki-hero-advantages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.roki-advantage {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(60, 40, 24, 0.14);
+}
+
+.roki-advantage span {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #754c2f;
+  background: rgba(182, 115, 74, 0.18);
+}
+
+.roki-advantage p {
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.roki-flow {
+  display: grid;
+  gap: 16px;
+}
+
+.roki-card {
+  display: grid;
+  gap: 10px;
+}
+
+.roki-card p {
+  color: var(--muted);
+}
+
+.armrest-schemes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.armrest-scheme {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  background: #fff;
+}
+
+.armrest-scheme strong {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 8px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+}
+
+.armrest-scheme span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.backrest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.roki-mini-grid {
+  gap: 16px;
+}
+
+.fabric-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.fabric-showcase {
+  gap: 14px;
+}
+
+.fabric-item {
+  padding: 10px;
+}
+
+.fabric-item img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.fabric-item h3 {
+  margin-bottom: 4px;
+}
+
+.fabric-item p {
+  color: var(--muted);
+}
+
+#why-roki .grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+#cta .hero-actions {
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .roki-hero-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 16px;
+    padding-bottom: 12px;
+  }
+
+  .roki-hero-advantages {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .roki-hero-advantages {
+    grid-template-columns: 1fr;
+  }
+
+  .roki-hero-copy h1 {
+    font-size: clamp(1.85rem, 8vw, 2.25rem);
+  }
+}
+
+
+
+
+
