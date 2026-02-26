@@ -11,43 +11,35 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header" id="top">
-    <div class="container header-bar">
+  <header class="site-header site-header-overlay" id="top">
+    <div class="container header-bar header-bar-overlay">
       <a class="brand" href="index.html" aria-label="Главная Clic-Clac">
         <span class="brand-mark">Clic-Clac</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Меню</button>
-      <nav class="nav" id="primary-nav" aria-label="Основная навигация">
-        <a href="#benefits">Преимущества</a>
-        <a href="#mechanism">Механизм</a>
-        <a href="#sizes">Размеры</a>
-        <a href="#fabrics">Ткани</a>
-        <a href="#interiors">Интерьеры</a>
-        <a href="#delivery">Доставка</a>
-        <a href="#faq">FAQ</a>
-        <a href="#about">Бренд</a>
-        <a href="#contacts">Контакты</a>
-        <a class="btn btn-primary" href="product.html">Заказать Rocky</a>
+      <nav class="nav nav-overlay" id="primary-nav" aria-label="Основная навигация">
+        <a href="#benefits">Каталог</a>
+        <a href="#mechanism">Коллекции</a>
+        <a href="#interiors">Галерея</a>
+        <a href="#about">О бренде</a>
+        <a href="#contacts">Магазины</a>
+        <a href="product.html">Заказать</a>
       </nav>
     </div>
   </header>
 
   <main>
     <section class="hero home-hero" id="hero">
-      <div class="container hero-grid home-hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Диван-кровать Rocky</p>
-          <h1><span class="hero-title-line">Рокки — ваш идеальный</span><br />уголок комфорта</h1>
-          <!-- <p class="lead">Сидение, отдых и сон каждый день с ортопедическим ощущением и подвижными подлокотниками. Надежный механизм «клик-клак» и ящик для хранения делают жизнь проще.</p> -->
-          <div class="hero-actions">
-            <a class="btn btn-primary hero-cta" href="product.html">Попробовать комфорт</a>
-            <a class="btn btn-ghost" href="#mechanism">Смотреть механизм</a>
-          </div>
-          <!-- <ul class="hero-benefits" aria-label="Преимущества Rocky">
-            <li>🛏 Раскладывается в кровать</li>
-            <li>💪 Надежный механизм</li>
-            <li>🧹 Минимум ухода</li>
-          </ul> -->
+      <div class="container home-hero-layout">
+        <div class="hero-copy hero-copy-overlay">
+          <!-- <p class="hero-tagline">Handcrafted with<br />spirit in Java.</p> -->
+          <p class="hero-tagline">
+            <span class="hero-tagline-line">Рокки - ваш идеальный</span>
+            <span class="hero-tagline-line">уголок комфорта.</span>
+          </p>
+        </div>
+        <div class="hero-actions hero-actions-overlay">
+          <a class="btn btn-ghost hero-outline-btn" href="product.html">Explore</a>
         </div>
       </div>
     </section>
