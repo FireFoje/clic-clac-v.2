@@ -290,6 +290,18 @@ img {
   color: #fff;
 }
 
+.section-head .tittle {
+  font-size: 32px;
+}
+
+.section-fabrics .section-head .sub-tittle {
+  font-size: 20px;
+  width: 1000px;
+}
+
+.section.alt .section-head .sub-tittle {
+  font-size: 20px;
+}
 
 .hero-grid {
   display: grid;
@@ -436,6 +448,10 @@ img {
 .section {
   padding: 64px 0;
 }
+
+/* .section-mechanics .sub-tittle {
+  font-size: 20px;
+} */
 
 .section.alt {
   background: var(--surface-alt);
@@ -999,6 +1015,7 @@ img {
 .contacts-section {
   margin-top: 28px;
   padding-top: 22px;
+  align-items: center;
   border-top: 1px solid var(--line);
 }
 
@@ -1010,7 +1027,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 14px;
+  margin: 14px 0px 14px;
 }
 
 .contacts-links a {
@@ -1332,20 +1349,54 @@ img {
   color: var(--muted);
 }
 .double-size-title {
-  font-size: 22px;
+  font-size: 20px;
   /* font-size: 1.90em; */
   line-height: 1.15;
 }
 
-.under-case {
+.section-head .sub-tittle {   /*  Откройте для себя функиональные возможности Рокки  */
+  font-size: 20px;
+}
+
+.why-roki-sub-tittle {
   font-size: 18px;
-  /* font-size: 1.90em; */
-  line-height: 1.15;
-  color: var(--muted);
 }
 
+.under-case {     /*  Каждый из четырех подлокотников регулируется независимо. Вы можете создать удобную поддержку для чтения, отдыха или сна.  */
+  font-size: 18px;
+  line-height: 1.30;
+  color: var(--muted);
+  text-align: justify;
+}
 
+.section-about {
+  padding: 20px 0px 20px;
+  /* background-color: #ffffff; */
+}
+/* 
+.section-about p {
+  margin-bottom: 20px;
+} */
 
+.section-about .tittle {
+  margin: 0px 0px 12px;
+}
+
+.section-about .sub-tittle {
+  color: #3a3a3a;
+  font-size: 18px;
+  width: 720px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.contacts-section .tittle {
+  font-size: 32px;
+}
+
+.contacts-section .sub-tittle {
+  font-size: 20px;
+}
 
 .armrest-schemes {
   display: grid;
@@ -1533,6 +1584,10 @@ img {
   margin-bottom: 16px;
 }
 
+.section-fabrics .section-head p {
+  font-size: 18px;
+}
+
 .fabric-showcase {
   gap: 14px;
 }
@@ -1581,7 +1636,12 @@ img {
 }
 
 #why-roki .why-roki-track .card {
-  flex: 0 0 clamp(230px, 28vw, 320px);
+  flex: 0 0 clamp(230px, 28vw, 220px);
+  text-align: center;
+}
+
+.why-roki-track .card h3 {
+  font-size: 16px;
 }
 
 @keyframes why-roki-scroll {
@@ -1654,7 +1714,11 @@ img {
   }
 }
 
-
+.section-production .sub-tittle {
+  font-size: 18px;
+  width: 720px;
+  text-align: justify;
+}
 
 
 
