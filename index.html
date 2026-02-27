@@ -18,11 +18,11 @@
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Меню</button>
       <nav class="nav" id="primary-nav" aria-label="Основная навигация">
-        <a href="#construction">Принцип работы</a>
+        <a href="#construction">Функциональность</a>
         <a href="#reliability">Надежность</a>
         <a href="#fabrics">Ткани</a>
         <a href="#why-roki">Почему Рокки</a>
-        <a href="#cta">Консультация</a>
+        <a href="#contacts">Контакты</a>
       </nav>
     </div>
   </header>
@@ -31,16 +31,62 @@
     <section class="hero home-hero" id="hero">
       <div class="container hero-grid home-hero-grid roki-hero-grid">
         <div class="hero-copy roki-hero-copy">
-          <h1>Рокки — диван для ежедневной жизни</h1>
-          <p class="lead roki-lead">Комфорт днем. Полноценный сон ночью.</p>
+          <h1>"Рокки" — комфорт днем и ночью</h1>
+          <p class="lead roki-lead">Компактный диван с полноценным спальным местом и ортопедическим основанием</p>
           <div class="roki-hero-advantages">
             <article class="roki-advantage"><span>⇅</span><p>5 положений подлокотников</p></article>
             <article class="roki-advantage"><span>⇅</span><p>3 положения спинки</p></article>
             <article class="roki-advantage"><span>⟲</span><p>Съемный чехол</p></article>
-            <article class="roki-advantage"><span>▣</span><p>Ящик для хранения белья</p></article>
+            <article class="roki-advantage"><span>▣</span><p>Ящик для хранения</p></article>
           </div>
           <div class="hero-actions">
-            <a class="btn btn-primary hero-cta" href="#cta">Записаться на консультацию</a>
+            <a class="btn btn-primary hero-cta" href="#prices">Узнать стоимость</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <h2>Галерея Рокки</h2>
+        </div>
+        <div class="roki-gallery" data-gallery>
+          <div class="roki-gallery-main">
+            <button class="roki-gallery-arrow roki-gallery-arrow-prev" type="button" aria-label="Предыдущее фото">‹</button>
+            <img
+              class="roki-gallery-main-image"
+              src="images/gallery/blue_in_showroom.jpg"
+              alt="Диван Рокки в шоуруме"
+              data-gallery-main
+            />
+            <button class="roki-gallery-arrow roki-gallery-arrow-next" type="button" aria-label="Следующее фото">›</button>
+          </div>
+          <div class="roki-gallery-progress" aria-hidden="true">
+            <span class="roki-gallery-progress-fill" data-gallery-progress></span>
+          </div>
+          <div class="roki-gallery-thumbs" role="list" aria-label="Миниатюры галереи">
+            <button class="roki-gallery-thumb is-active" type="button" role="listitem" data-gallery-src="images/gallery/blue_in_showroom.jpg" data-gallery-alt="Диван Рокки в шоуруме" aria-label="Показать фото 1">
+              <img src="images/gallery/blue_in_showroom.jpg" alt="" />
+            </button>
+            <button class="roki-gallery-thumb" type="button" role="listitem" data-gallery-src="images/gallery/blue_in_home.jpg" data-gallery-alt="Диван Рокки в синем цвете в интерьере" aria-label="Показать фото 2">
+              <img src="images/gallery/blue_in_home.jpg" alt="" />
+            </button>
+            <button class="roki-gallery-thumb" type="button" role="listitem" data-gallery-src="images/gallery/grey_in_home.jpg" data-gallery-alt="Диван Рокки в сером цвете в гостиной" aria-label="Показать фото 3">
+              <img src="images/gallery/grey_in_home.jpg" alt="" />
+            </button>
+            <button class="roki-gallery-thumb" type="button" role="listitem" data-gallery-src="images/gallery/orange_in_home.jpg" data-gallery-alt="Диван Рокки в оранжевом цвете в интерьере" aria-label="Показать фото 4">
+              <img src="images/gallery/orange_in_home.jpg" alt="" />
+            </button>
+            <button class="roki-gallery-thumb" type="button" role="listitem" data-gallery-src="images/gallery/red_in_home.jpg" data-gallery-alt="Диван Рокки в красном цвете в интерьере" aria-label="Показать фото 5">
+              <img src="images/gallery/red_in_home.jpg" alt="" />
+            </button>
+            <button class="roki-gallery-thumb" type="button" role="listitem" data-gallery-src="images/gallery/white_in_home.jpg" data-gallery-alt="Диван Рокки в белом цвете в гостиной" aria-label="Показать фото 6">
+              <img src="images/gallery/white_in_home.jpg" alt="" />
+            </button>
+            <button class="roki-gallery-thumb" type="button" role="listitem" data-gallery-src="images/gallery/yellow_in_home.jpg" data-gallery-alt="Диван Рокки в желтом цвете в интерьере" aria-label="Показать фото 7">
+              <img src="images/gallery/yellow_in_home.jpg" alt="" />
+            </button>
           </div>
         </div>
       </div>
@@ -49,7 +95,8 @@
     <section class="section" id="construction">
       <div class="container">
         <div class="section-head">
-          <h2>Как работает диван</h2>
+          <h2>Механизм и комфорт дивана Рокки.</h2>
+      
           <!-- <p>Рассчитан на ежедневное использование и продуман до мелочей.</p> -->
         </div>
 
@@ -62,12 +109,12 @@
           <div class="roki-comfort-grid">
             <article class="card roki-card" aria-label="Положения подлокотников">
               <h3 class="double-size-title">5 положений подлокотников</h3>
-              <p>Каждый из четырех подлокотников регулируется независимо. Вы можете создать удобную поддержку для чтения, отдыха или сна.</p>
+              <p class="under-case">Каждый из четырех подлокотников регулируется независимо. Вы можете создать удобную поддержку для чтения, отдыха или сна.</p>
               <img class="roki-comfort-gif" src="gif/sides.gif" alt="Положения подлокотников дивана Рокки" />
             </article>
             <article class="card roki-card" aria-label="Положения спинки">
               <h3 class="double-size-title">3 положения спинки</h3>
-              <p>Три положения спинки позволяют настроить диван под ваше состояние — для активного дня или полного расслабления.</p>
+              <p class="under-case">Три положения спинки позволяют настроить диван под ваше состояние — для активного дня или полного расслабления.</p>
               <img class="roki-comfort-gif" src="gif/back.gif" alt="Положения спинки дивана Рокки" />
               <div class="backrest-grid" aria-label="Положения спинки">
               </div>
@@ -75,14 +122,17 @@
           </div>
 
           <div class="grid-2 roki-mini-grid">
-            <article class="card">
-              <h3 class="under-case">Встроенный ящик для белья</h3>
-              <p>Под сиденьем расположен вместительный ящик для хранения постельного белья и других вещей. Он рассчитан на реальную жизнь, а не на аккуратное «бережное» использование.
-Прочный древесный корпус устойчив к весу, ударам и частому открыванию. Он не рассыпается и остаётся надёжным спустя годы. Проверенно многолетним опытом.</p>
+            <article class="card roki-card">
+              <h3 class="double-size-title">Ящик для хранения</h3>
+              <p class="under-case">Под сиденьем расположен вместительный ящик для хранения вещей.</p>
+              <p class="under-case"><br>Корпус выполнен из прочных древесных материалов и рассчитан на ежедневное использование.
+Он устойчив к нагрузкам и сохраняет надежность на протяжении многих лет.</p>
             </article>
-            <article class="card">
-              <h3 class="under-case">Съемный чехол</h3>
-              <p>Чехол легко снимается для чистки, а при необходимости его можно полностью заменить на новый. Не нужно накрывать диван пледами и переживать за каждое пятно — Рокки создан для жизни. Пользуйтесь им свободно. А если захотите обновить внешний вид, новый чехол можно заказать повторно по выгодной цене.</p>
+            <article class="card roki-card">
+              <h3 class="double-size-title">Съемный чехол</h3>
+              <p class="under-case">Чехол легко снимается для чистки и при необходимости полностью заменяется.</p>
+              <p class="under-case"><br>Вы можете обновить внешний вид дивана, заказав новый чехол отдельно.
+Рокки создан для жизни — пользуйтесь им свободно.</p>
             </article>
           </div>
         </div>
@@ -92,17 +142,23 @@
     <section class="section alt" id="reliability">
       <div class="container">
         <div class="section-head">
-          <h2>Прочная конструкция — рассчитан на годы использования</h2>
+          <h2>Конструкция и надежность</h2>
           <p>Надежность, функциональность и комфорт для ежедневного сна.</p>
         </div>
         <div class="grid-2">
           <article class="card">
-            <h3>Усиленный металлический механизм</h3>
-            <p>Плавная трансформация без лишней нагрузки и стабильная работа каждый день.</p>
+            <h3>Усиленный стальной механизм</h3>
+            <p>Механизм выполнен из прочной стали и рассчитан на ежедневную трансформацию.
+Он обеспечивает плавное раскладывание и долгий срок службы.</p>
           </article>
           <article class="card">
-            <h3>Надежный каркас и качественные наполнители</h3>
-            <p>Конструкция держит форму, а наполнение поддерживает комфорт в режиме дивана и кровати.</p>
+            <h3>Ортопедическое основание</h3>
+            <p>Диван оснащён матрасом с ортопедическим основанием, которое поддерживает позвоночник во время сна.
+Подходит для ежедневного использования.</p>
+          </article>
+          <article class="card">
+            <h3>Прочный каркас</h3>
+            <p>Каркас изготовлен из качественных древесных материалов, устойчивых к нагрузкам и деформации.</p>
           </article>
         </div>
       </div>
@@ -116,7 +172,7 @@
         </div>
 
         <div class="fabric-tags" aria-label="Фильтры тканей">
-          <span class="color-chip">Для животных</span>
+          <span class="color-chip">🐾 Для животных</span>
           <span class="color-chip">Повышенная износостойкость</span>
           <span class="color-chip">Мягкие</span>
           <span class="color-chip">Премиальные</span>
@@ -151,34 +207,77 @@
         </div>
       </div>
     </section>
-
+    <section class="section" id="prices">
+      <div class="container">
+        <div class="section-head">
+          <h2>Стоимость на диван Рокки</h2>
+          <p>Стоимость зависит от выбранной ткани и комплектации. Точную цену уточняйте на консультации.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Базовая комплектация</h3>
+            <p><strong>от 1 890 BYN</strong></p>
+          </article>
+          <article class="card">
+            <h3>Популярная комплектация</h3>
+            <p><strong>от 2 190 BYN</strong></p>
+          </article>
+          <article class="card">
+            <h3>Премиальная комплектация</h3>
+            <p><strong>от 2 490 BYN</strong></p>
+          </article>
+        </div>
+      </div>
+    </section>
     <section class="section alt" id="why-roki">
       <div class="container">
         <div class="section-head">
           <h2>Почему выбирают Рокки</h2>
           <p>Комфорт, который можно настроить под ваш ритм жизни.</p>
         </div>
-        <div class="grid-3">
-          <article class="card">
-            <h3>Для ежедневного сна</h3>
-            <p>Полноценное спальное место и надежный механизм.</p>
-          </article>
-          <article class="card">
-            <h3>Индивидуальный подбор ткани</h3>
-            <p>Подбираем ткань под интерьер и образ жизни.</p>
-          </article>
-          <article class="card">
-            <h3>5 положений подлокотников</h3>
-            <p>Максимальная адаптация под ваш комфорт.</p>
-          </article>
-          <article class="card">
-            <h3>Легкий и мобильный</h3>
-            <p>Диван легко перемещать и транспортировать.</p>
-          </article>
-          <article class="card">
-            <h3>Практичность</h3>
-            <p>Съемный чехол и ящик для хранения.</p>
-          </article>
+        <div class="why-roki-carousel" aria-label="Преимущества дивана Рокки">
+          <div class="why-roki-track">
+            <article class="card">
+              <h3>Современный лаконичный дизайн</h3>
+              <!-- <p>Полноценное спальное место и надежный механизм.</p> -->
+            </article>
+            <article class="card">
+              <h3>Полноценное двуспальное место</h3>
+              <!-- <p>Подбираем ткань под интерьер и образ жизни.</p> -->
+            </article>
+            <article class="card">
+              <h3>Ортопедическая посадка</h3>
+              <!-- <p>Максимальная адаптация под ваш комфорт.</p> -->
+            </article>
+            <article class="card">
+              <h3>Прочный стальной механизм</h3>
+              <!-- <p>Диван легко перемещать и транспортировать.</p> -->
+            </article>
+            <article class="card">
+              <h3>Подвижные независимые подлокотники</h3>
+              <!-- <p>Съемный чехол и ящик для хранения.</p> -->
+            </article>
+            <article class="card" aria-hidden="true">
+              <h3>Сменные чехлы и разнообразный выбор ткани</h3>
+              <!-- <p>Полноценное спальное место и надежный механизм.</p> -->
+            </article>
+            <article class="card" aria-hidden="true">
+              <h3>Простой уход</h3>
+              <!-- <p>Подбираем ткань под интерьер и образ жизни.</p> -->
+            </article>
+            <article class="card" aria-hidden="true">
+              <h3>Компактные размеры</h3>
+              <!-- <p>Максимальная адаптация под ваш комфорт.</p> -->
+            </article>
+            <article class="card" aria-hidden="true">
+              <h3>Легкий и мобильный</h3>
+              <!-- <p>Диван легко перемещать и транспортировать.</p> -->
+            </article>
+            <!-- <article class="card" aria-hidden="true">
+              <h3>Практичность</h3>
+              <p>Съемный чехол и ящик для хранения.</p>
+            </article> -->
+          </div>
         </div>
       </div>
     </section>
@@ -193,6 +292,30 @@
           <a class="btn btn-primary" href="product.html">Заказать консультацию</a>
         </div>
       </div>
+    </section>
+    <section id="contacts">
+      <div class="container contacts-section">
+      <h4>Контакты</h4>
+      <div class="contacts-links">
+        <a href="https://t.me/Zelki_life" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="viber://chat?number=%2B375292005818">Viber</a>
+        <a href="https://wa.me/375291197065" target="_blank" rel="noopener noreferrer">WatsUp</a>
+        <a href="https://www.instagram.com/clic_clac.by/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="tel:+375291197065">+375 (29) 119-70-65</a>
+      </div>
+      <div class="contacts-map" aria-label="Карта магазина Clic-Clac">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2349.847498344868!2d27.453266658197037!3d53.91668580758747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbc53931c8d66b%3A0xae50f248303cf62d!2sClic-clac!5e0!3m2!1sru!2ses!4v1772128052271!5m2!1sru!2ses"
+          width="600"
+          height="450"
+          style="border: 0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Карта Google: Clic-Clac"
+        ></iframe>
+      </div>
+    </div>
     </section>
   </main>
 
@@ -219,6 +342,9 @@
   <script src="app.js"></script>
 </body>
 </html>
+
+
+
 
 
 
