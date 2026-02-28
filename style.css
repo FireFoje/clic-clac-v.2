@@ -310,7 +310,7 @@ img {
 
 .section-fabrics .section-head .sub-tittle {
   font-size: 20px;
-  width: 1000px;
+  width: 100%;
 }
 
 .section.alt .section-head .sub-tittle {
@@ -1254,17 +1254,30 @@ img {
   }
 }
 
-.container-diffrents h2 {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(2.05rem, 4.2vw, 3.25rem);
+.container-diffrents .tittle {
+  font-family: "Nunito", system-ui, sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+  line-height: 1.04;
+  margin: 0px 0px 12px;
+  height: 51.17px;
+  
+}
+
+.container-diffrents .sub-tittle {
+  font-family: "Nunito", system-ui, sans-serif;
+  font-size: 20px;
   font-weight: 500;
   letter-spacing: 0.01em;
   line-height: 1.04;
+  margin: 0px 0px 28px;
+  color: #7c7168;
 }
 
 .card-container-diffrents {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  grid-template-columns: repeat(2, 1fr);
   gap: 18px;
   align-items: stretch;
 }
@@ -1411,7 +1424,7 @@ img {
 
 .section-slogan .tittle {
   font-size: 34px;
-  width: 1050px;
+  width: 100%;
   font-family: 'Montserrat';
   text-align: center;
   
@@ -1429,7 +1442,7 @@ img {
 .section-about .sub-tittle {
   color: #3a3a3a;
   font-size: 18px;
-  width: 720px;
+  width: 100%;
   line-height: 1.4;
   text-align: left;
 }
@@ -1506,11 +1519,16 @@ img {
 }
 
 .roki-gallery {
+  
   display: grid;
   gap: 14px;
 }
 
 .roki-gallery-main {
+  justify-self: center;
+  height: 100%;
+  width: 100%;
+  max-width: 800px;
   position: relative;
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -1520,9 +1538,9 @@ img {
 
 .roki-gallery-main-image {
   width: 100%;
-  height: clamp(280px, 52vw, 620px);
+  height: clamp(280px, 40vw, 600px);
   object-fit: cover;
-  object-position: center;
+  /* object-position: bottom top; */
   transition: transform 0.32s ease, opacity 0.32s ease;
   will-change: transform, opacity;
 }
@@ -1627,6 +1645,7 @@ img {
   gap: 10px;
   margin-bottom: 16px;
 }
+
 
 .section-fabrics .section-head p {
   font-size: 18px;
@@ -1761,7 +1780,7 @@ img {
 .section-production {
   position: relative;
   text-align: center;
-  width: 800px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -1774,7 +1793,7 @@ img {
 
 .section-production .tittle {
   font-family: "Montserrat";
-  width: 600px;
+  width: 100%;
   text-align: center;
 }
 
