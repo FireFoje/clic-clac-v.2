@@ -118,7 +118,7 @@ img {
   font-size: 20px;
 }
 
-.site-header .brand {
+.site-header .brand { 
   color: rgba(255, 255, 255, 0.95);
 }
 
@@ -1417,8 +1417,14 @@ img {
   border-top: 1px solid var(--line);
   /* background-color: #ffffff; */
 }
+
+.container-slogan {
+  align-items: center;
+}
+
 .section.slogan {
-  margin:  auto auto;
+  width: 100%;
+  display: flex;
 }
 
 
@@ -1426,8 +1432,7 @@ img {
   font-size: 34px;
   width: 100%;
   font-family: 'Montserrat';
-  text-align: center;
-  
+  text-align: center;  
 }
 
 /* 
@@ -1788,6 +1793,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0px 20px 64px 20px;
   /* min-height: 100vh; */
 }
 
