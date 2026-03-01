@@ -22,9 +22,16 @@
 
 @font-face {
   font-family: "Playfair";
-  src: url(fonts/Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf);
+  src: url(fonts/Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf) format('woff2');
   font-weight: bold;
   font-style: italic;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url(fonts/Inter/Inter-Italic-VariableFont_opsz\,wght.ttf) format('woff2');
+  font-weight: normal;
+  font-style:inherit;
 }
 
 * {
@@ -95,12 +102,12 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 0;
+  padding: 16px 20px;
   gap: 20px;
 }
 
 .header-bar-overlay {
-  padding: 24px 0;
+  padding: 20px;
   gap: 28px;
 }
 
@@ -118,7 +125,7 @@ img {
   font-size: 20px;
 }
 
-.site-header .brand { 
+.site-header .brand {
   color: rgba(255, 255, 255, 0.95);
 }
 
@@ -214,8 +221,11 @@ img {
 
 .home-hero {
   position: relative;
-  height: calc(100svh - -1px);
-  min-height: calc(100svh - 72px);
+  width: 100%;
+  height: 100%;
+  /* height: calc(100svh - -1px); */
+  /* min-height: calc(100svh - 72px); */
+  min-height: 100svh;
   padding: 0;
   display: flex;
   align-items: center;
@@ -306,15 +316,19 @@ img {
 
 .section-head .tittle {
   font-size: 32px;
+  color: #1A1A1A;
+  font-weight: 700;
 }
 
 .section-fabrics .section-head .sub-tittle {
   font-size: 20px;
+  font-weight: 500;
   width: 100%;
 }
 
 .section.alt .section-head .sub-tittle {
   font-size: 20px;
+  font-weight: 500;
 }
 
 .hero-grid {
@@ -595,6 +609,31 @@ img {
   background: #f9f5f2;
 }
 
+#production .production-card {
+  
+  /* border-radius: 1px; */
+  border: 5px solid #e5dcd3;
+  box-shadow: 0 7px 18px rgba(54, 39, 28, 0.05);
+  border-radius: 5%;
+  padding: 15px 30px 15px 30px;
+  
+  /* background: #f9f5f2; */
+}
+
+.production-card h2 {
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+.production-card p {
+  display: flex;
+  margin: 12px 20px 14px 20px;
+  /* margin-top: 12px;
+  margin-bottom: 4px; */
+  text-align: justify;
+  
+}
+
 #features .card h3,
 #sizes .card h3 {
   margin-top: 12px;
@@ -820,10 +859,16 @@ img {
 .faq {
   display: grid;
   gap: 10px;
+  
+}
+
+.section.alt.faqs {
+  padding: 32px 0px 64px 0px;
 }
 
 .faq-item {
-  width: 100%;
+  width: 65%;
+  min-width: 320px;
   text-align: left;
   border: 1px solid var(--line);
   background: var(--surface);
@@ -838,6 +883,8 @@ img {
 
 .faq-panel {
   display: block;
+  width: 65%;
+  min-width: 320px;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
@@ -1254,6 +1301,10 @@ img {
   }
 }
 
+.diffrents {
+  padding: 32px 0px 64px 0px;
+}
+
 .container-diffrents .tittle {
   font-family: "Nunito", system-ui, sans-serif;
   font-size: 32px;
@@ -1388,6 +1439,10 @@ img {
   background: #fff;
 }
 
+.why-roki {
+  padding: 32px 0px 64px 0px;
+}
+
 .roki-card p {
   color: var(--muted);
 }
@@ -1399,10 +1454,12 @@ img {
 
 .section-head .sub-tittle {   /*  Откройте для себя функиональные возможности Рокки  */
   font-size: 20px;
+  font-weight: 500;
 }
 
 .why-roki-sub-tittle {
   font-size: 18px;
+  font-weight: 500;
 }
 
 .under-case {     /*  Каждый из четырех подлокотников регулируется независимо. Вы можете создать удобную поддержку для чтения, отдыха или сна.  */
@@ -1429,10 +1486,22 @@ img {
 
 
 .section-slogan .tittle {
-  font-size: 34px;
+  font-size: clamp(1.5rem, 3vw + 1rem, 3rem);
+  color: #333333;
+  /* width: 700px; */
   width: 100%;
-  font-family: 'Montserrat';
+  /* min-width: 700px; */
+  margin: 0 auto;
+  font-family: 'Nunito';
+  font-weight: 600;
+  letter-spacing: 0.3px;
   text-align: center;  
+}
+
+@media (min-width: 1200px) {
+  .brand {
+    max-width: 1400px;
+  }
 }
 
 /* 
@@ -1447,6 +1516,7 @@ img {
 .section-about .sub-tittle {
   color: #3a3a3a;
   font-size: 18px;
+  font-weight: 500;
   width: 100%;
   line-height: 1.4;
   text-align: left;
@@ -1457,6 +1527,7 @@ img {
 }
 
 .contacts-section .sub-tittle {
+  font-weight: 500;
   font-size: 20px;
 }
 
@@ -1521,6 +1592,12 @@ img {
 
 .roki-mini-grid .roki-card .under-case + .under-case {
   margin-top: 12px;
+}
+
+.gallery {
+  padding: 32px 0px 64px 0px;
+  border-top: 1px solid #d8b89e;
+  border-bottom: 1px solid #d8b89e;
 }
 
 .roki-gallery {
@@ -1642,6 +1719,11 @@ img {
     transform: translateY(-2px);
     border-color: #d0a083;
   }
+}
+
+
+.container.container-fabrics {
+padding: 32px 0px 64px 0px;
 }
 
 .fabric-tags {
@@ -1782,6 +1864,7 @@ img {
   }
 }
 
+
 .section-production {
   position: relative;
   text-align: center;
@@ -1794,11 +1877,15 @@ img {
   justify-content: center;
   align-items: center;
   padding: 0px 20px 64px 20px;
+  /* border: 1px solid #d8b89e; */
+  /* border-bottom: 1px solid var(--line); */
+  
   /* min-height: 100vh; */
 }
 
 .section-production .tittle {
-  font-family: "Montserrat";
+  font-family: "Nunito";
+  font-weight: 700;
   width: 100%;
   text-align: center;
 }
@@ -1808,6 +1895,7 @@ img {
 }
 
 .section-production .sub-tittle {
+  font-weight: 500;
   font-size: 18px;
   text-align: left;
 }
@@ -1821,25 +1909,21 @@ img {
   pointer-events: none;
 }
 
-
-.section.delivery .sub-tittle {
-  font-size: 18px;
+.section.delivery {
+  padding: 32px 0px 64px 0px;
 }
 
+.section.delivery .sub-tittle {
+  font-size: 20px;
+  font-weight: 500;
+}
 
+.reliability {
+  padding: 32px 0px 64px 0px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.functionality {
+  padding: 32px 0px 64px 0px;
+  border-top: 1px solid #d8b89e;
+  border-bottom: 1px solid #d8b89e;
+}
