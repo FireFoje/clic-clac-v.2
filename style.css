@@ -1477,6 +1477,9 @@ img {
 
 .container-slogan {
   align-items: center;
+  /* margin: 0px 100px; */
+  width: clamp(340px, 80vw, 850px);
+  /* width: 60%; */
 }
 
 .section.slogan {
@@ -1486,10 +1489,11 @@ img {
 
 
 .section-slogan .tittle {
-  font-size: clamp(1.5rem, 3vw + 1rem, 3rem);
+  font-size: clamp(1.6rem, 6vw, 3rem);
   color: #333333;
   /* width: 700px; */
-  width: 100%;
+  width: clamp(340px, 80vw, 800px);
+  /* max-width: 700px; */
   /* min-width: 700px; */
   margin: 0 auto;
   font-family: 'Nunito';
