@@ -18,11 +18,21 @@
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Меню</button>
       <nav class="nav" id="primary-nav" aria-label="Основная навигация">
-        <a href="#construction">Функциональность</a>
-        <a href="#reliability">Надежность</a>
+        <div class="nav nav-item dropdown">
+          <a class="dropdown-button" href="#">Рокки</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-menu-tittle" href="#production">Что такое Рокки?</a>
+            <a class="dropdown-menu-tittle" href="#diffrents">Модели Рокки</a>
+            <a class="dropdown-menu-tittle" href="#gabarits">Размеры</a>
+            <a class="dropdown-menu-tittle" href="#construction">Функциональность и конструкция</a>
+            <a class="dropdown-menu-tittle" href="#why-roki">Почему выбирают Рокки?</a>
+          </div>
+        </div>
+        <a href="#gallery">Галерея</a>
         <a href="#fabrics">Ткани</a>
-        <a href="#why-roki">Почему Рокки</a>
-        <a href="#about-us">О нас</a>
+        <a href="#delivery">Доставка</a>
+        <a href="#faqs">Частые вопросы</a>
+        <a href="about">О нас</a>
         <a href="#contacts">Контакты</a>
       </nav>
     </div>
@@ -68,7 +78,7 @@
       </div>
     </section>
 
-    <section class="section diffrents">
+    <section class="section diffrents" id="diffrents">
       <div class="container container-diffrents">
         <div class="section-diffrents">
           <h2 class="tittle">Рокки и Рокки-Люкс — в чем отличие?</h2>
@@ -135,14 +145,48 @@
       </div>
     </section>
 
+
     <section class="section" id="gabarits">
       <div class="container gabarits">
-        <div class="section-head">
-          <h2>Размеры дивана</h2>
-          <img src="images/gabarits/gabarits_front.jpg" alt="" />
+        <div class="section-hea">
+          <h2 class="tittle">Размеры дивана</h2>
+          <p class="sub-tittle">Размеры дивана продуманы так, чтобы он оставался компактным в интерьере и обеспечивал комфорт для отдыха и сна.</p>
+          <div class="gabarits-pics">
+            <div class="gabarits-row">
+              <article>
+                <img src="images/gabarits/gabarits_sides.jpg" alt="">
+              </article>
+              <article>
+                <div class="gabarits-desc">
+                  <h3>Положения дивана</h3>
+                  <p>сидя — 100 см</p>
+                  <p>релакс — 112 см</p>
+                  <p>лёжа — 134 см</p>
+                  <h3>Размер спального места</h3>
+                  <p>134 × 200 см</p>
+                </div>
+              </article>
+            </div>
+            <div class="gabarits-row">
+              <article>
+                <img src="images/gabarits/gabarits_front.jpg" alt="">
+              </article>
+              <article>
+                <div class="gabarits-desc">
+                  <h3>Длина дивана</h3>
+                  <p>175 / 180 / 190 / 205 / 210 см</p>
+                  <p>Вы можете выбрать длину дивана...</p>
+                  <h3>Высота</h3>
+                  <p>Общая высота дивана — 100 см</p>
+                  <p>Высота сиденья от пола — 45 см</p>
+                </div>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+
 
     <section class="section functionality" id="construction">
       <div class="container">
