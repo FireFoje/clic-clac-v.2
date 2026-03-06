@@ -139,15 +139,16 @@ img {
   overflow: hidden;
 }
 
-.site-header .dropdown a {
+.site-header .dropdown > .dropdown-button {
   color: rgba(255, 255, 255, 0.9);
   border-radius: 999px;
   padding: 6px 12px;
   font-size: 15px;
   background: rgba(255, 255, 255, 0.08);
-  /* background-color: #000; */
   border: 0;
   backdrop-filter: blur(2px);
+  text-decoration: none;
+  display: inline-block;
 }
 
 .dropdown-menu {
@@ -1258,6 +1259,39 @@ img {
     font-size: 14px;
   }
 
+  .nav .dropdown {
+    float: none;
+    width: 100%;
+  }
+
+  .nav .dropdown-button {
+    display: block;
+    width: 100%;
+  }
+
+  .nav .dropdown-menu {
+    position: static;
+    top: auto;
+    margin-top: 6px;
+    padding: 6px 0 0;
+    min-width: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .nav .dropdown:hover .dropdown-menu {
+    display: none;
+  }
+
+  .nav .dropdown.open .dropdown-menu {
+    display: block;
+  }
+
+  .site-header .nav .dropdown-menu .dropdown-menu-tittle {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
   .nav.open {
     display: flex;
   }
@@ -1369,8 +1403,7 @@ img {
   letter-spacing: 0.01em;
   line-height: 1.04;
   margin: 0px 0px 12px;
-  height: 51.17px;
-  
+  height: auto;
 }
 
 .container-diffrents .sub-tittle {
@@ -1384,10 +1417,28 @@ img {
 }
 
 .card-container-diffrents {
-  display: flex;
-  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
   align-items: stretch;
+}
+
+.card-container-diffrents > .roki-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-container-diffrents > .roki-card .under-case {
+  margin: 0;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.card-container-diffrents > .roki-card .roki-comfort-gif {
+  margin-top: auto;
+  height: clamp(220px, 18vw, 290px);
 }
 
 /* Roki landing structure */
@@ -1914,6 +1965,10 @@ padding: 32px 0px 64px 0px;
 }
 
 @media (max-width: 900px) {
+  .card-container-diffrents {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .roki-hero-grid {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -1931,6 +1986,14 @@ padding: 32px 0px 64px 0px;
 }
 
 @media (max-width: 700px) {
+  .card-container-diffrents {
+    grid-template-columns: 1fr;
+  }
+
+  .card-container-diffrents > .roki-card .roki-comfort-gif {
+    height: 240px;
+  }
+
   .roki-gallery-main-image {
     height: 320px;
   }
