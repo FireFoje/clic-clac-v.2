@@ -1,0 +1,27 @@
+# version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: clic03
+      POSTGRES_DB: review
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    restart: always
+    environment:
+      DATABASE_URL: postgres://postgres:clic03@db:5432/review
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  pgdata:

@@ -1,4 +1,4 @@
-const navToggle = document.querySelector('.nav-toggle');
+﻿const navToggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.nav');
 const siteHeader = document.querySelector('.site-header');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -129,7 +129,7 @@ if (orderForm && orderStatus) {
     const configuration = formData.get('configuration');
     const fabric = formData.get('fabric');
 
-    orderStatus.textContent = `Заказ принят: ${size}, ${configuration}, ткань ${fabric}. Наш менеджер свяжется с вами.`;
+    orderStatus.textContent = `Ð—Ð°ÐºÐ°Ð· Ð¿Ñ€Ð¸Ð½ÑÑ‚: ${size}, ${configuration}, Ñ‚ÐºÐ°Ð½ÑŒ ${fabric}. ÐÐ°Ñˆ Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€ ÑÐ²ÑÐ¶ÐµÑ‚ÑÑ Ñ Ð²Ð°Ð¼Ð¸.`;
   });
 }
 
@@ -687,3 +687,87 @@ if (whyRokiCarousel) {
     }, { once: true });
   }
 }
+const API_BASE_URL = 'http://localhost:3000';
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+async function loadReviews() {
+  const container = document.getElementById('reviewsContainer');
+  if (!container) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/reviews`);
+    if (!response.ok) {
+      throw new Error('Failed to load reviews');
+    }
+
+    const reviews = await response.json();
+    container.innerHTML = reviews
+      .map((review) => `<p><b>${escapeHtml(review.username)}</b>: ${escapeHtml(review.review_text)}</p>`)
+      .join('');
+  } catch (error) {
+    container.innerHTML = '<p>Не удалось загрузить отзывы.</p>';
+    console.error(error);
+  }
+}
+
+async function addReview(username, reviewText) {
+  const response = await fetch(`${API_BASE_URL}/reviews`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, review_text: reviewText })
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to add review');
+  }
+
+  return response.json();
+}
+
+const reviewForm = document.getElementById('reviewForm');
+const reviewStatus = document.getElementById('reviewStatus');
+
+if (reviewForm) {
+  reviewForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const usernameInput = document.getElementById('username');
+    const reviewTextInput = document.getElementById('reviewText');
+
+    const username = usernameInput ? usernameInput.value.trim() : '';
+    const reviewText = reviewTextInput ? reviewTextInput.value.trim() : '';
+
+    if (!username || !reviewText) {
+      if (reviewStatus) {
+        reviewStatus.textContent = 'Заполните имя и отзыв.';
+      }
+      return;
+    }
+
+    try {
+      await addReview(username, reviewText);
+      reviewForm.reset();
+      if (reviewStatus) {
+        reviewStatus.textContent = 'Отзыв добавлен.';
+      }
+      await loadReviews();
+    } catch (error) {
+      if (reviewStatus) {
+        reviewStatus.textContent = 'Не удалось отправить отзыв.';
+      }
+      console.error(error);
+    }
+  });
+}
+
+loadReviews();
