@@ -1,5 +1,6 @@
 ﻿:root {
-  --bg: #f7f3ef;
+  --bg: #fff8f1;
+  /* --bg: #faf7f2; */
   --surface: #ffffff;
   --surface-alt: #fbf7f2;
   --ink: #2b2420;
@@ -1571,6 +1572,7 @@ section.section-fabrics {
 .roki-card {
   display: grid;
   gap: 10px;
+  /* border: 10px; */
 }
 
 /* .gabarits .images-gabarits {
@@ -2045,10 +2047,17 @@ section.section-fabrics {
 #why-roki .why-roki-track .card {
   flex: 0 0 clamp(220px, 28vw, 260px);
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .why-roki-track .card h3 {
   font-size: 16px;
+}
+
+.why-roki-track .card img {
+  margin-top: auto;
+  align-self: center;
 }
 
 #cta .hero-actions {
