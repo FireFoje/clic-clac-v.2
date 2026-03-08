@@ -570,57 +570,120 @@ const whyRokiCarousel = document.querySelector('#why-roki .why-roki-carousel');
 
 if (whyRokiCarousel) {
   const whyRokiTrack = whyRokiCarousel.querySelector('.why-roki-track');
-  let resumeAutoScrollTimer = null;
+  const sourceCards = whyRokiTrack ? [...whyRokiTrack.children] : [];
 
-  const normalizeInfinitePosition = () => {
-    if (!whyRokiTrack) {
-      return;
-    }
-
-    const halfTrackWidth = whyRokiTrack.scrollWidth / 2;
-    if (!halfTrackWidth) {
-      return;
-    }
-
-    if (whyRokiCarousel.scrollLeft >= halfTrackWidth) {
-      whyRokiCarousel.scrollLeft -= halfTrackWidth;
-    } else if (whyRokiCarousel.scrollLeft <= 0) {
-      whyRokiCarousel.scrollLeft += halfTrackWidth;
-    }
-  };
-
-  if (whyRokiTrack && whyRokiTrack.scrollWidth > 0) {
-    whyRokiCarousel.scrollLeft = whyRokiTrack.scrollWidth / 4;
-  }
-
-  whyRokiCarousel.addEventListener('wheel', (event) => {
-    const dominantDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY)
-      ? event.deltaX
-      : event.deltaY;
-
-    if (!dominantDelta) {
-      return;
-    }
-
-    event.preventDefault();
-    whyRokiCarousel.scrollLeft += dominantDelta * 1.15;
-    normalizeInfinitePosition();
-
-    if (whyRokiTrack) {
-      whyRokiTrack.style.animationPlayState = 'paused';
-      whyRokiTrack.style.webkitAnimationPlayState = 'paused';
-    }
-
-    if (resumeAutoScrollTimer) {
-      clearTimeout(resumeAutoScrollTimer);
-    }
-
-    resumeAutoScrollTimer = window.setTimeout(() => {
-      normalizeInfinitePosition();
-      if (whyRokiTrack) {
-        whyRokiTrack.style.animationPlayState = 'running';
-        whyRokiTrack.style.webkitAnimationPlayState = 'running';
+  if (whyRokiTrack && sourceCards.length > 1) {
+    const originalCount = sourceCards.length;
+    const fragment = document.createDocumentFragment();
+    const makeSet = (isClone) => sourceCards.map((card) => {
+      const node = card.cloneNode(true);
+      if (isClone) {
+        node.setAttribute('aria-hidden', 'true');
       }
-    }, 700);
-  }, { passive: false });
+      return node;
+    });
+
+    [...makeSet(true), ...makeSet(false), ...makeSet(true)].forEach((card) => fragment.appendChild(card));
+    whyRokiTrack.innerHTML = '';
+    whyRokiTrack.appendChild(fragment);
+
+    let setWidth = 0;
+    let trackPosition = 0;
+    let frameId = null;
+    let lastTimestamp = 0;
+    let isHovered = false;
+    const autoVelocity = -36;
+
+    const applyTransform = () => {
+      whyRokiTrack.style.transform = `translate3d(${trackPosition}px, 0, 0)`;
+    };
+
+    const wrapPosition = () => {
+      if (!setWidth) {
+        return;
+      }
+
+      while (trackPosition <= -2 * setWidth) {
+        trackPosition += setWidth;
+      }
+
+      while (trackPosition >= 0) {
+        trackPosition -= setWidth;
+      }
+    };
+
+    const updateMeasurements = () => {
+      const firstMiddle = whyRokiTrack.children[originalCount];
+      const lastMiddle = whyRokiTrack.children[originalCount * 2 - 1];
+      if (!firstMiddle || !lastMiddle) {
+        return;
+      }
+
+      const nextSetWidth = (lastMiddle.offsetLeft + lastMiddle.offsetWidth) - firstMiddle.offsetLeft;
+      if (!nextSetWidth) {
+        return;
+      }
+
+      if (setWidth) {
+        const phase = ((trackPosition + setWidth) % setWidth + setWidth) % setWidth;
+        trackPosition = -nextSetWidth + phase;
+      } else {
+        trackPosition = -nextSetWidth;
+      }
+
+      setWidth = nextSetWidth;
+      wrapPosition();
+      applyTransform();
+    };
+
+    const shouldAutoMove = () => !isHovered;
+
+    const tick = (timestamp) => {
+      if (!lastTimestamp) {
+        lastTimestamp = timestamp;
+      }
+
+      const deltaSeconds = (timestamp - lastTimestamp) / 1000;
+      lastTimestamp = timestamp;
+
+      if (shouldAutoMove() && setWidth) {
+        trackPosition += autoVelocity * deltaSeconds;
+        wrapPosition();
+        applyTransform();
+      }
+
+      frameId = window.requestAnimationFrame(tick);
+    };
+
+    whyRokiCarousel.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    whyRokiCarousel.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+
+    whyRokiCarousel.addEventListener('wheel', (event) => {
+      const dominantDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+      if (!dominantDelta || !setWidth) {
+        return;
+      }
+
+      event.preventDefault();
+      trackPosition -= dominantDelta * 1.1;
+      wrapPosition();
+      applyTransform();
+    }, { passive: false });
+
+    window.addEventListener('resize', updateMeasurements, { passive: true });
+    window.addEventListener('load', updateMeasurements, { once: true, passive: true });
+    updateMeasurements();
+    frameId = window.requestAnimationFrame(tick);
+
+    window.addEventListener('beforeunload', () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+    }, { once: true });
+  }
 }

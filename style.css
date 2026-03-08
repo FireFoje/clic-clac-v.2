@@ -123,7 +123,26 @@ img {
   font-family: "Nunito", system-ui, sans-serif;
   font-weight: 700;
   font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 1;
 }
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  max-width: 220px;
+}
+
+.brand-mark img {
+  width: auto;
+  height: clamp(38px, 5vw, 56px);
+  max-width: 100%;
+  max-height: 56px;
+  object-fit: contain;
+}
+
 
 .site-header .brand {
   color: rgba(255, 255, 255, 0.95);
@@ -1116,6 +1135,10 @@ section.section-fabrics {
   border-top: 1px solid var(--line);
 }
 
+.section.reviews {
+  border-top: 1px solid var(--line);
+}
+
 .footer-grid {
   display: grid;
   gap: 20px;
@@ -1128,6 +1151,11 @@ section.section-fabrics {
   margin: 6px 0;
 }
 
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(100px, 1fr));
+}
+
 .footer-bottom {
   text-align: center;
   color: var(--muted);
@@ -1137,7 +1165,8 @@ section.section-fabrics {
 
 .contacts-section {
   margin-top: 28px;
-  padding-top: 22px;
+  padding-top: 32px;
+  padding-bottom: 64px;
   align-items: center;
   border-top: 1px solid var(--line);
 }
@@ -1220,6 +1249,15 @@ section.section-fabrics {
 }
 
 @media (max-width: 900px) {
+  .brand-mark {
+    max-width: 170px;
+  }
+
+  .brand-mark img {
+    height: clamp(34px, 10vw, 44px);
+    max-height: 44px;
+  }
+
   .header-bar-overlay {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -1962,6 +2000,7 @@ section.section-fabrics {
   overflow: hidden;
   position: relative;
   width: 100%;
+  touch-action: pan-y;
   mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
 }
@@ -1970,15 +2009,15 @@ section.section-fabrics {
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: why-roki-scroll 36s linear infinite;
   will-change: transform;
 }
 
-#why-roki .why-roki-carousel:hover .why-roki-track,
-#why-roki .why-roki-track:hover,
-#why-roki .why-roki-carousel:focus-within .why-roki-track {
-  animation-play-state: paused;
-  -webkit-animation-play-state: paused !important;
+.why-roki-track img {
+  justify-self: center;
+  max-height: 100px;
+  height: calc(40px, 1rem, 100px);
+  max-width: 100px;
+  width: calc(40px, 1rem, 100px);
 }
 
 #why-roki .why-roki-track .card {
@@ -1988,15 +2027,6 @@ section.section-fabrics {
 
 .why-roki-track .card h3 {
   font-size: 16px;
-}
-
-@keyframes why-roki-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 #cta .hero-actions {
@@ -2079,7 +2109,6 @@ section.section-fabrics {
 
   #why-roki .why-roki-track {
     gap: 14px;
-    animation-duration: 28s;
   }
 
   #why-roki .why-roki-track .card {
@@ -2090,7 +2119,7 @@ section.section-fabrics {
 
 @media (prefers-reduced-motion: reduce) {
   #why-roki .why-roki-track {
-    animation: why-roki-scroll 36s linear infinite !important;
+    animation: none !important;
   }
 }
 
@@ -2160,4 +2189,9 @@ section.section-fabrics {
   padding: 32px 0px 64px 0px;
   border-top: 1px solid #d8b89e;
   border-bottom: 1px solid #d8b89e;
+}
+
+.section.reviews {
+  padding-top: 32px;
+  padding-bottom: 64px;
 }
