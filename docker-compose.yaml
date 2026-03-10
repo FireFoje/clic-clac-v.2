@@ -1,4 +1,4 @@
-# version: '3.8'
+﻿# version: '3.8'
 
 services:
   db:
@@ -14,10 +14,14 @@ services:
       - "5432:5432"
 
   backend:
-    build: ./backend
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
     restart: always
     environment:
       DATABASE_URL: postgres://postgres:clic03@db:5432/review
+      # Use $$ to keep a literal $ in Docker Compose env values.
+      ADMIN_SECRET: "kjsJJKDC987CHJAKSC7CHBSCCNSHJabcabcusG9HdJhbscjh4aBUndtkmdIMF93dJGDBdvCjJDJ32ob"
     ports:
       - "3000:3000"
     depends_on:

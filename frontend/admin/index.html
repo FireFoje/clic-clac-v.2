@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Panel | Reviews</title>
+  <style>
+    :root {
+      --bg: #f6f3ef;
+      --surface: #ffffff;
+      --line: #ddd2c8;
+      --ink: #2f2722;
+      --muted: #76675d;
+      --accent: #b6734a;
+      --accent-strong: #995c39;
+      --danger: #b83d2f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    .container {
+      width: min(1080px, 94vw);
+      margin: 24px auto 40px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .credentials {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-strong);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      padding: 10px 8px;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    #status {
+      min-height: 20px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Admin Panel</h1>
+
+    <section class="card">
+      <p>Enter the admin key to load and manage reviews.</p>
+      <div class="credentials">
+        <input id="adminKey" type="password" autocomplete="off" placeholder="X-Admin-Key" />
+        <button id="loadBtn" class="btn-primary" type="button">Load reviews</button>
+        <button id="clearBtn" type="button">Clear key</button>
+      </div>
+      <p id="status" aria-live="polite"></p>
+    </section>
+
+    <section class="card table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Text</th>
+            <th>Rating</th>
+            <th>Created At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="reviewsBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="./admin.js"></script>
+</body>
+</html>

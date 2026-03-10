@@ -689,14 +689,70 @@ if (whyRokiCarousel) {
 }
 const API_BASE_URL = 'http://localhost:3000';
 
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
+const REVIEWS_PREVIEW_LIMIT = 5;
+const REVIEW_PREVIEW_MAX_CHARS = 260;
+
+function formatReviewDate(createdAt) {
+  const parsedDate = new Date(createdAt);
+  if (Number.isNaN(parsedDate.getTime())) {
+    return 'Publication date unavailable';
+  }
+
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  }).format(parsedDate);
 }
+
+function createReviewCard(review) {
+  const card = document.createElement('article');
+  card.className = 'homepage-review-card';
+
+  const name = document.createElement('p');
+  name.className = 'homepage-review-name';
+  name.textContent = (review.username || 'Anonymous').trim();
+
+  const text = document.createElement('p');
+  text.className = 'homepage-review-text';
+  const fullText = (review.text || review.review_text || '').trim();
+  const hasText = fullText.length > 0;
+  const isLong = fullText.length > REVIEW_PREVIEW_MAX_CHARS;
+  const previewText = isLong
+    ? `${fullText.slice(0, REVIEW_PREVIEW_MAX_CHARS).trimEnd()}...`
+    : fullText;
+  text.textContent = hasText ? previewText : 'No review text.';
+
+  if (isLong) {
+    const readMoreButton = document.createElement('button');
+    readMoreButton.type = 'button';
+    readMoreButton.className = 'homepage-review-read-more';
+    readMoreButton.textContent = 'Read more';
+    readMoreButton.setAttribute('aria-expanded', 'false');
+    readMoreButton.addEventListener('click', () => {
+      const isExpanded = readMoreButton.getAttribute('aria-expanded') === 'true';
+      readMoreButton.setAttribute('aria-expanded', String(!isExpanded));
+      readMoreButton.textContent = isExpanded ? 'Read more' : 'Show less';
+      text.textContent = isExpanded ? previewText : fullText;
+    });
+    card.append(name, text, readMoreButton);
+  } else {
+    card.append(name, text);
+  }
+
+  const date = document.createElement('p');
+  date.className = 'homepage-review-date';
+  date.textContent = formatReviewDate(review.created_at);
+  card.appendChild(date);
+
+  return card;
+}
+
+const reviewStatus = document.getElementById('reviewStatus');
+const reviewForm = document.getElementById('reviewForm');
+const reviewFormStatus = document.getElementById('reviewFormStatus');
+const reviewNameInput = document.getElementById('reviewName');
+const reviewContentInput = document.getElementById('reviewContent');
 
 async function loadReviews() {
   const container = document.getElementById('reviewsContainer');
@@ -705,65 +761,74 @@ async function loadReviews() {
   }
 
   try {
-    const response = await fetch(`${API_BASE_URL}/reviews`);
+    const response = await fetch(`${API_BASE_URL}/api/reviews?page=1&limit=${REVIEWS_PREVIEW_LIMIT}`);
     if (!response.ok) {
       throw new Error('Failed to load reviews');
     }
 
-    const reviews = await response.json();
-    container.innerHTML = reviews
-      .map((review) => `<p><b>${escapeHtml(review.username)}</b>: ${escapeHtml(review.review_text)}</p>`)
-      .join('');
+    const responseData = await response.json();
+    const latestReviews = Array.isArray(responseData.items)
+      ? responseData.items.slice(0, REVIEWS_PREVIEW_LIMIT)
+      : [];
+
+    container.replaceChildren(...latestReviews.map((review) => createReviewCard(review)));
+    if (reviewStatus) {
+      reviewStatus.textContent = latestReviews.length ? '' : 'No reviews yet.';
+    }
   } catch (error) {
-    container.innerHTML = '<p>Не удалось загрузить отзывы.</p>';
+    container.replaceChildren();
+    if (reviewStatus) {
+      reviewStatus.textContent = 'Failed to load reviews.';
+    }
     console.error(error);
   }
 }
 
-async function addReview(username, reviewText) {
-  const response = await fetch(`${API_BASE_URL}/reviews`, {
+async function submitReview(name, content) {
+  const response = await fetch(`${API_BASE_URL}/api/reviews`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, review_text: reviewText })
+    body: JSON.stringify({ name, content })
   });
 
   if (!response.ok) {
-    throw new Error('Failed to add review');
+    const payload = await response.json().catch(() => ({}));
+    const message = typeof payload.error === 'string' ? payload.error : 'Failed to add review.';
+    throw new Error(message);
   }
-
-  return response.json();
 }
 
-const reviewForm = document.getElementById('reviewForm');
-const reviewStatus = document.getElementById('reviewStatus');
-
-if (reviewForm) {
+if (reviewForm && reviewNameInput && reviewContentInput) {
   reviewForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const usernameInput = document.getElementById('username');
-    const reviewTextInput = document.getElementById('reviewText');
+    const name = reviewNameInput.value.trim();
+    const content = reviewContentInput.value.trim();
 
-    const username = usernameInput ? usernameInput.value.trim() : '';
-    const reviewText = reviewTextInput ? reviewTextInput.value.trim() : '';
+    if (!name || !content) {
+      if (reviewFormStatus) {
+        reviewFormStatus.textContent = 'Name and review are required.';
+      }
+      return;
+    }
 
-    if (!username || !reviewText) {
-      if (reviewStatus) {
-        reviewStatus.textContent = 'Заполните имя и отзыв.';
+    if (content.length > 2000) {
+      if (reviewFormStatus) {
+        reviewFormStatus.textContent = 'Review is too long.';
       }
       return;
     }
 
     try {
-      await addReview(username, reviewText);
+      await submitReview(name, content);
       reviewForm.reset();
-      if (reviewStatus) {
-        reviewStatus.textContent = 'Отзыв добавлен.';
+      if (reviewFormStatus) {
+        reviewFormStatus.textContent = 'Review added.';
       }
       await loadReviews();
     } catch (error) {
-      if (reviewStatus) {
-        reviewStatus.textContent = 'Не удалось отправить отзыв.';
+      if (reviewFormStatus) {
+        reviewFormStatus.textContent = error.message || 'Failed to add review.';
       }
       console.error(error);
     }

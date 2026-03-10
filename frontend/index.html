@@ -395,67 +395,32 @@
     <section class="section reviews" id="reviews">
       <div class="container">
         <div class="section-head">
-          <h2>Проверенные отзывы покупателей.</h2>
-          <p>Реальные впечатления владельцев Rocky.</p>
+          <h2>Отзывы покупателей</h2>
+          <p>Последние отзывы о диване Rocky.</p>
         </div>
-        <div>
-          <h1>Отзывы</h1>
-          
-          <h2>Добавить отзыв</h2>
-          <form id="reviewForm">
-            <input type="text" id="username" placeholder="Ваше имя" required maxlength="50">
-            <textarea id="reviewText" placeholder="Ваш отзыв" required maxlength="2000"></textarea>
-            <button type="submit">Отправить</button>
-          </form>
-          <div class="review-card" id="reviewsContainer"></div>
-          <p id="reviewStatus" aria-live="polite"></p>
+        <section aria-label="Customer reviews">
+        <form class="reviews-form" id="reviewForm">
+          <label class="reviews-form-field">
+            <span>Name</span>
+            <input id="reviewName" name="name" type="text" maxlength="50" required />
+          </label>
+          <label class="reviews-form-field">
+            <span>Review</span>
+            <textarea id="reviewContent" name="content" maxlength="2000" required></textarea>
+          </label>
+          <button class="reviews-form-submit" type="submit">Add</button>
+          <p class="reviews-form-status" id="reviewFormStatus" aria-live="polite"></p>
+        </form>
+
+        <div class="reviews-page-list" id="allReviewsContainer"></div>
+        <p class="reviews-page-status" id="allReviewsStatus" aria-live="polite"></p>
+        <nav class="reviews-pagination" id="reviewsPagination" aria-label="Reviews pagination"></nav>
+      </section>
+        <div class="homepage-reviews">
+          <div class="homepage-reviews-list" id="reviewsContainer"></div>
+          <p class="homepage-review-status" id="reviewStatus" aria-live="polite"></p>
+          <a class="homepage-reviews-link" href="/reviews">View all reviews</a>
         </div>
-        <div class="grid-3">
-          <div class="review-card">
-            <p>“Очень довольна покупкой! Диван оказался не только красивым, но и очень удобным.
-               Легко раскладывается, работает все чётко. Ткань приятная на ощупь и, что важно для меня, легко чистится от пятен.
-                Ребёнок уже успел протестировать 😅 — всё отлично!”</p>
-            <span>— Анна</span>
-          </div>
-          <div class="review-card">
-            <p>“Брал диван для загородного дома. Хотел что-то недорогое, но надёжное. 
-              Был приятно удивлён качеством за такую цену. Уже несколько месяцев активно используется — всё в порядке.”</p>
-            <span>— Олег</span>
-          </div>
-          <div class="review-card">
-            <p>“Приятно удивила лёгкость раскладывания. Даже ребёнок 8 лет спокойно справляется с раскладыванием. 
-              Для нас это показатель качества и удобства.”</p>
-            <span>— Евгений</span>
-          </div>
-          <div class="review-card">
-            <p>“Искал диван, на котором можно комфортно сидеть по 6–8 часов в день. Этот вариант полностью оправдал ожидания. 
-              Спинка поддерживает поясницу, сиденье средней жёсткости — не проваливаешься. 
-              Качество сборки хорошее, ничего не скрипит. Рекомендую тем, кто ценит комфорт и практичность.”</p>
-            <span>— Артем</span>
-          </div>
-          <div class="review-card">
-            <p>“Для дачи съёмные чехлы — это огромный плюс. После выходных с друзьями диван не всегда остаётся идеально чистым 😄 
-              Но я спокойно снимаю чехол и стираю его дома. Никакого стресса из-за пятен. Очень практично.”</p>
-            <span>— Виктория</span>
-          </div>
-          <div class="review-card">
-            <p>“Искали функциональный вариант для 16-летнего сына. Он часто приглашает друзей, поэтому диван используется активно. 
-              Раскладывает его сам, без усилий. Механизм крепкий, выдерживает ежедневное использование — это радует.”</p>
-            <span>— Марина</span>
-          </div>
-          <div class="review-card">
-            <p>“Был приятно удивлён, насколько он компактный. Когда нужно сделать перестановку или помыть пол, 
-              диван двигается легко и не создаёт ощущения тяжёлой громоздкой мебели. 
-              По ощущениям — как аккуратный модуль, а не полноценный большой диван.”</p>
-            <span>— Павел</span>
-          </div>
-          <div class="review-card">
-            <p>“Купили диван 7 лет назад. Служил долго верой и правдой, но благодаря братьям нашим меньшим (у нас два кота), чехол пришел в негодность. 
-              Заказали здесь же новый, выбрали другой цвет и диван как новенький! Советуем к приобретению, очень практичный!”</p>
-            <span>— Геннадий</span>
-          </div>
-        </div>
-        
       </div>
     </section>
 
@@ -576,6 +541,7 @@
         <h4>Компания</h4>
         <a href="#about-us">О нас</a>
         <a href="#contacts">Контакты</a>
+        <a href="/admin">Admin Panel</a>
       </div>
     </div>
     <div class="footer-bottom">&copy; 2026 Clic-Clac. Все права защищены.</div>

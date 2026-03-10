@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All Reviews | Clic-Clac</title>
+  <meta name="description" content="Customer reviews for Rocky sofa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <main class="reviews-page">
+    <div class="container reviews-page-container">
+      <header class="reviews-page-head">
+        <a class="reviews-page-back" href="/">Back to homepage</a>
+        <h1>All Reviews</h1>
+      </header>
+
+      <section aria-label="Customer reviews">
+        <form class="reviews-form" id="reviewForm">
+          <label class="reviews-form-field">
+            <span>Name</span>
+            <input id="reviewName" name="name" type="text" maxlength="50" required />
+          </label>
+          <label class="reviews-form-field">
+            <span>Review</span>
+            <textarea id="reviewContent" name="content" maxlength="2000" required></textarea>
+          </label>
+          <button class="reviews-form-submit" type="submit">Add</button>
+          <p class="reviews-form-status" id="reviewFormStatus" aria-live="polite"></p>
+        </form>
+
+        <div class="reviews-page-list" id="allReviewsContainer"></div>
+        <p class="reviews-page-status" id="allReviewsStatus" aria-live="polite"></p>
+        <nav class="reviews-pagination" id="reviewsPagination" aria-label="Reviews pagination"></nav>
+      </section>
+    </div>
+  </main>
+
+  <script src="reviews.js"></script>
+</body>
+</html>
