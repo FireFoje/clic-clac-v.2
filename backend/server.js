@@ -22,6 +22,9 @@ app.get('/admin', (_req, res) => {
 app.get('/reviews', (_req, res) => {
   res.sendFile(path.join(frontendDir, 'reviews', 'index.html'));
 });
+app.get('/photos', (_req, res) => {
+  res.sendFile(path.join(frontendDir, 'photos', 'index.html'));
+});
 
 async function initDb() {
   await pool.query(`
@@ -50,6 +53,14 @@ async function initDb() {
   await pool.query(`ALTER TABLE reviews ALTER COLUMN rating SET NOT NULL`);
   await pool.query(`ALTER TABLE reviews DROP CONSTRAINT IF EXISTS reviews_rating_range`);
   await pool.query(`ALTER TABLE reviews ADD CONSTRAINT reviews_rating_range CHECK (rating BETWEEN 1 AND 5)`);
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS photos (
+      id SERIAL PRIMARY KEY,
+      url TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT NOW()
+    )
+  `);
 }
 
 app.get('/health', (_req, res) => {
@@ -101,6 +112,16 @@ app.get('/reviews.json', async (_req, res) => {
   } catch (error) {
     console.error('Failed to fetch reviews:', error);
     res.status(500).json({ error: 'Failed to fetch reviews' });
+  }
+});
+
+app.get('/api/photos', async (_req, res) => {
+  try {
+    const result = await pool.query('SELECT id, url, created_at FROM photos ORDER BY created_at DESC');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Failed to fetch photos:', error);
+    res.status(500).json({ error: 'Failed to fetch photos' });
   }
 });
 

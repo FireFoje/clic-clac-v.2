@@ -9,9 +9,19 @@ const loadBtn = document.getElementById('loadBtn');
 const clearBtn = document.getElementById('clearBtn');
 const statusEl = document.getElementById('status');
 const reviewsBody = document.getElementById('reviewsBody');
+const photoUploadForm = document.getElementById('photoUploadForm');
+const photoInput = document.getElementById('photoInput');
+const photoStatus = document.getElementById('photoStatus');
+const photoGrid = document.getElementById('photoGrid');
 
 function setStatus(message) {
   statusEl.textContent = message;
+}
+
+function setPhotoStatus(message) {
+  if (photoStatus) {
+    photoStatus.textContent = message;
+  }
 }
 
 function getAdminKey() {
@@ -37,6 +47,41 @@ async function fetchAdminReviews(adminKey) {
 
   if (!response.ok) {
     throw new Error(response.status === 403 ? 'Forbidden: invalid admin key' : 'Failed to fetch reviews');
+  }
+
+  return response.json();
+}
+
+async function fetchAdminPhotos(adminKey) {
+  const response = await fetch(`${API_BASE_URL}/admin/photos`, {
+    headers: {
+      'X-Admin-Key': adminKey
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(response.status === 403 ? 'Forbidden: invalid admin key' : 'Failed to fetch photos');
+  }
+
+  return response.json();
+}
+
+async function uploadAdminPhoto(file, adminKey) {
+  const formData = new FormData();
+  formData.append('photo', file);
+
+  const response = await fetch(`${API_BASE_URL}/admin/photos`, {
+    method: 'POST',
+    headers: {
+      'X-Admin-Key': adminKey
+    },
+    body: formData
+  });
+
+  if (!response.ok) {
+    const payloadError = await response.json().catch(() => ({}));
+    const fallback = response.status === 403 ? 'Forbidden: invalid admin key' : 'Failed to upload photo';
+    throw new Error(typeof payloadError.error === 'string' ? payloadError.error : fallback);
   }
 
   return response.json();
@@ -180,6 +225,51 @@ function renderReviews(reviews, adminKey) {
   });
 }
 
+function renderPhotos(photos) {
+  if (!photoGrid) {
+    return;
+  }
+
+  photoGrid.innerHTML = '';
+
+  if (!Array.isArray(photos) || photos.length === 0) {
+    const empty = document.createElement('p');
+    empty.textContent = 'Пока нет загруженных фото.';
+    photoGrid.appendChild(empty);
+    return;
+  }
+
+  photos.forEach((photo) => {
+    const card = document.createElement('div');
+    card.className = 'photo-card';
+    const img = document.createElement('img');
+    img.src = photo.url;
+    img.alt = 'Фото дивана';
+    img.loading = 'lazy';
+    card.appendChild(img);
+    photoGrid.appendChild(card);
+  });
+}
+
+async function loadPhotos(adminKeyFromArg) {
+  const adminKey = (adminKeyFromArg || getAdminKey()).trim();
+  if (!adminKey) {
+    setPhotoStatus('Admin key is required.');
+    return;
+  }
+
+  setPhotoStatus('Loading photos...');
+
+  try {
+    const photos = await fetchAdminPhotos(adminKey);
+    renderPhotos(photos);
+    setPhotoStatus(`Loaded ${photos.length} photo(s).`);
+  } catch (error) {
+    photoGrid.innerHTML = '';
+    setPhotoStatus(error.message);
+  }
+}
+
 async function loadReviews(adminKeyFromArg) {
   const adminKey = (adminKeyFromArg || getAdminKey()).trim();
   if (!adminKey) {
@@ -194,6 +284,7 @@ async function loadReviews(adminKeyFromArg) {
     saveAdminKey(adminKey);
     renderReviews(reviews, adminKey);
     setStatus(`Loaded ${reviews.length} review(s).`);
+    loadPhotos(adminKey);
   } catch (error) {
     reviewsBody.innerHTML = '';
     setStatus(error.message);
@@ -206,7 +297,40 @@ clearBtn.addEventListener('click', () => {
   clearAdminKey();
   reviewsBody.innerHTML = '';
   setStatus('Admin key cleared.');
+  if (photoGrid) {
+    photoGrid.innerHTML = '';
+  }
+  setPhotoStatus('');
 });
+
+if (photoUploadForm) {
+  photoUploadForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const adminKey = getAdminKey();
+    const file = photoInput?.files?.[0];
+
+    if (!adminKey) {
+      setPhotoStatus('Admin key is required.');
+      return;
+    }
+
+    if (!file) {
+      setPhotoStatus('Выберите файл для загрузки.');
+      return;
+    }
+
+    setPhotoStatus('Uploading...');
+
+    try {
+      await uploadAdminPhoto(file, adminKey);
+      photoInput.value = '';
+      setPhotoStatus('Фото загружено.');
+      await loadPhotos(adminKey);
+    } catch (error) {
+      setPhotoStatus(error.message);
+    }
+  });
+}
 
 const savedKey = sessionStorage.getItem(ADMIN_KEY_STORAGE_KEY) || '';
 if (savedKey) {

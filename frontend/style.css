@@ -1951,6 +1951,12 @@ section.section-fabrics {
   gap: 10px;
 }
 
+.gallery-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+
 .roki-gallery-thumb {
   border: 2px solid transparent;
   border-radius: 10px;
@@ -2428,6 +2434,54 @@ section.section-fabrics {
   cursor: default;
 }
 
+.photos-page {
+  background: var(--bg);
+}
+
+.photos-main {
+  padding: 48px 0 72px;
+}
+
+.photos-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.photos-card {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 16px 38px rgba(22, 18, 14, 0.12);
+}
+
+.photos-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+.photos-empty {
+  margin-top: 20px;
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .photos-main {
+    padding: 36px 0 56px;
+  }
+}
 @media (max-width: 700px) {
   #reviews.section.reviews {
     padding-top: 24px;
