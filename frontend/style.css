@@ -163,7 +163,8 @@ img {
 
 .dropdown {
   float: left;
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
 }
 
 .site-header .dropdown > .dropdown-button {
@@ -179,7 +180,8 @@ img {
 }
 
 .dropdown-menu {
-  top: 75%; 
+  top: 100%;
+  left: 0;
   display: none;
   position: absolute;
   background: rgb(87, 60, 41);
@@ -213,7 +215,8 @@ img {
   background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
   display: block;
 }
 

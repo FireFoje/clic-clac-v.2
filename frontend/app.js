@@ -38,8 +38,14 @@ if (navToggle && nav) {
   const dropdown = nav.querySelector('.dropdown');
 
   if (dropdownButton && dropdown) {
+    const isMobileDropdown = () => {
+      const isNarrow = window.matchMedia('(max-width: 900px)').matches;
+      const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+      return isNarrow || isTouch;
+    };
+
     dropdownButton.addEventListener('click', (event) => {
-      if (window.innerWidth > 900) {
+      if (!isMobileDropdown()) {
         return;
       }
 
