@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Admin Panel | Reviews</title>
+  <title>Панель Администратора | Отзывы</title>
   <style>
     :root {
       --bg: #f6f3ef;
@@ -92,23 +92,6 @@
       overflow-x: auto;
     }
 
-    .photo-upload {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      align-items: center;
-      margin-top: 12px;
-    }
-
-    .photo-upload input[type="file"] {
-      width: 100%;
-      border: 1px dashed var(--line);
-      border-radius: 10px;
-      padding: 10px 12px;
-      background: #fff;
-      font-size: 14px;
-    }
-
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -128,12 +111,6 @@
       height: 120px;
       object-fit: cover;
       display: block;
-    }
-
-    @media (max-width: 720px) {
-      .photo-upload {
-        grid-template-columns: 1fr;
-      }
     }
 
     table {
@@ -168,39 +145,34 @@
 </head>
 <body>
   <main class="container">
-    <h1>Admin Panel</h1>
+    <h1>Панель Администратора</h1>
 
     <section class="card">
-      <p>Enter the admin key to load and manage reviews.</p>
+      <p>Введите ключ управления</p>
       <div class="credentials">
         <input id="adminKey" type="password" autocomplete="off" placeholder="X-Admin-Key" />
-        <button id="loadBtn" class="btn-primary" type="button">Load reviews</button>
-        <button id="clearBtn" type="button">Clear key</button>
+        <button id="loadBtn" class="btn-primary" type="button">Войти</button>
+        <button id="clearBtn" type="button">Очистить ключ</button>
       </div>
       <p id="status" aria-live="polite"></p>
     </section>
 
-    <section class="card">
+    <!-- <section class="card">
       <h2>Фото галерея</h2>
-      <p>Загрузите фото в директорию <strong>/uploads</strong>. Они появятся на странице /photos.</p>
-      <form id="photoUploadForm" class="photo-upload">
-        <input id="photoInput" type="file" accept="image/*" required />
-        <button class="btn-primary" type="submit">Загрузить</button>
-      </form>
       <p id="photoStatus" aria-live="polite"></p>
       <div id="photoGrid" class="photo-grid"></div>
-    </section>
+    </section> -->
 
     <section class="card table-wrap">
       <table>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Username</th>
-            <th>Text</th>
-            <th>Rating</th>
-            <th>Created At</th>
-            <th>Actions</th>
+            <th>Имя</th>
+            <th>Текст</th>
+            <th>Рейтинг</th>
+            <th>Оставлен</th>
+            <th>Действия</th>
           </tr>
         </thead>
         <tbody id="reviewsBody"></tbody>

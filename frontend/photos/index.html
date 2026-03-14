@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
@@ -21,6 +21,17 @@
       <p id="photosEmpty" class="photos-empty" hidden>Пока нет загруженных фото.</p>
     </div>
   </main>
+
+  <div id="photosLightbox" class="photos-lightbox" aria-hidden="true">
+    <div class="photos-lightbox__backdrop" data-lightbox-close></div>
+    <div class="photos-lightbox__content" role="dialog" aria-modal="true" aria-label="Фотография">
+      <button class="photos-lightbox__close" type="button" data-lightbox-close aria-label="Закрыть">×</button>
+      <button class="photos-lightbox__nav photos-lightbox__prev" type="button" data-lightbox-prev aria-label="Предыдущее фото">‹</button>
+      <img id="photosLightboxImage" class="photos-lightbox__image" src="" alt="Фото дивана Рокки" />
+      <button class="photos-lightbox__nav photos-lightbox__next" type="button" data-lightbox-next aria-label="Следующее фото">›</button>
+      <div id="photosLightboxCounter" class="photos-lightbox__counter"></div>
+    </div>
+  </div>
 
   <script src="./photos.js"></script>
 </body>

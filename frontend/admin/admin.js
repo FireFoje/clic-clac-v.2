@@ -9,8 +9,6 @@ const loadBtn = document.getElementById('loadBtn');
 const clearBtn = document.getElementById('clearBtn');
 const statusEl = document.getElementById('status');
 const reviewsBody = document.getElementById('reviewsBody');
-const photoUploadForm = document.getElementById('photoUploadForm');
-const photoInput = document.getElementById('photoInput');
 const photoStatus = document.getElementById('photoStatus');
 const photoGrid = document.getElementById('photoGrid');
 
@@ -61,27 +59,6 @@ async function fetchAdminPhotos(adminKey) {
 
   if (!response.ok) {
     throw new Error(response.status === 403 ? 'Forbidden: invalid admin key' : 'Failed to fetch photos');
-  }
-
-  return response.json();
-}
-
-async function uploadAdminPhoto(file, adminKey) {
-  const formData = new FormData();
-  formData.append('photo', file);
-
-  const response = await fetch(`${API_BASE_URL}/admin/photos`, {
-    method: 'POST',
-    headers: {
-      'X-Admin-Key': adminKey
-    },
-    body: formData
-  });
-
-  if (!response.ok) {
-    const payloadError = await response.json().catch(() => ({}));
-    const fallback = response.status === 403 ? 'Forbidden: invalid admin key' : 'Failed to upload photo';
-    throw new Error(typeof payloadError.error === 'string' ? payloadError.error : fallback);
   }
 
   return response.json();
@@ -158,7 +135,7 @@ function renderReviews(reviews, adminKey) {
     actionsCell.className = 'actions';
     const editBtn = document.createElement('button');
     editBtn.type = 'button';
-    editBtn.textContent = 'Edit';
+    editBtn.textContent = 'Редактировать';
     editBtn.className = 'btn-primary';
 
     editBtn.addEventListener('click', async () => {
@@ -202,7 +179,7 @@ function renderReviews(reviews, adminKey) {
 
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
-    deleteBtn.textContent = 'Delete';
+    deleteBtn.textContent = 'Удалить';
     deleteBtn.className = 'btn-danger';
 
     deleteBtn.addEventListener('click', async () => {
@@ -302,35 +279,6 @@ clearBtn.addEventListener('click', () => {
   }
   setPhotoStatus('');
 });
-
-if (photoUploadForm) {
-  photoUploadForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const adminKey = getAdminKey();
-    const file = photoInput?.files?.[0];
-
-    if (!adminKey) {
-      setPhotoStatus('Admin key is required.');
-      return;
-    }
-
-    if (!file) {
-      setPhotoStatus('Выберите файл для загрузки.');
-      return;
-    }
-
-    setPhotoStatus('Uploading...');
-
-    try {
-      await uploadAdminPhoto(file, adminKey);
-      photoInput.value = '';
-      setPhotoStatus('Фото загружено.');
-      await loadPhotos(adminKey);
-    } catch (error) {
-      setPhotoStatus(error.message);
-    }
-  });
-}
 
 const savedKey = sessionStorage.getItem(ADMIN_KEY_STORAGE_KEY) || '';
 if (savedKey) {

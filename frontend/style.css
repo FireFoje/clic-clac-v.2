@@ -316,7 +316,7 @@ img {
   padding: 0;
   display: flex;
   align-items: center;
-  background: url("images/kid at the sofa.PNG") center center / cover no-repeat;
+  background: url("images/index/background/bg\ v2\ e.png") center center / cover no-repeat;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
@@ -2467,6 +2467,19 @@ section.section-fabrics {
   box-shadow: 0 16px 38px rgba(22, 18, 14, 0.12);
 }
 
+.photos-card-button {
+  border: 0;
+  padding: 0;
+  width: 100%;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.photos-card-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .photos-card img {
   width: 100%;
   height: 100%;
@@ -2480,9 +2493,130 @@ section.section-fabrics {
   color: var(--muted);
 }
 
+.is-lightbox-open {
+  overflow: hidden;
+}
+
+.photos-lightbox {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 60;
+}
+
+.photos-lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.photos-lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 14, 10, 0.72);
+  backdrop-filter: blur(2px);
+}
+
+.photos-lightbox__content {
+  position: relative;
+  width: min(92vw, 1100px);
+  max-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.photos-lightbox__image {
+  max-width: 100%;
+  max-height: 82vh;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.photos-lightbox__nav,
+.photos-lightbox__close {
+  position: absolute;
+  border: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  font-size: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.photos-lightbox__nav:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.photos-lightbox__close {
+  top: -16px;
+  right: -16px;
+  font-size: 26px;
+}
+
+.photos-lightbox__prev {
+  left: -18px;
+}
+
+.photos-lightbox__next {
+  right: -18px;
+}
+
+.photos-lightbox__counter {
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 @media (max-width: 700px) {
   .photos-main {
     padding: 36px 0 56px;
+  }
+
+  .photos-lightbox__content {
+    width: 94vw;
+  }
+
+  .photos-lightbox__nav,
+  .photos-lightbox__close {
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+
+  .photos-lightbox__prev {
+    left: 6px;
+  }
+
+  .photos-lightbox__next {
+    right: 6px;
+  }
+
+  .photos-lightbox__close {
+    top: 6px;
+    right: 6px;
+  }
+
+  .photos-lightbox__counter {
+    bottom: -28px;
+    font-size: 12px;
   }
 }
 @media (max-width: 700px) {

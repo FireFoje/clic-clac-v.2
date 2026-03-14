@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const pool = require('./db/pool');
 const adminReviewsRoutes = require('./routes/adminReviewsRoutes');
+const { syncUploadsToDb } = require('./utils/uploadsSync');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -63,6 +64,7 @@ async function initDb() {
   `);
 }
 
+
 app.get('/health', (_req, res) => {
   res.json({ ok: true });
 });
@@ -117,6 +119,7 @@ app.get('/reviews.json', async (_req, res) => {
 
 app.get('/api/photos', async (_req, res) => {
   try {
+    await syncUploadsToDb();
     const result = await pool.query('SELECT id, url, created_at FROM photos ORDER BY created_at DESC');
     res.json(result.rows);
   } catch (error) {
@@ -173,7 +176,13 @@ app.post('/reviews', createReview);
 app.use('/admin', adminReviewsRoutes);
 
 initDb()
-  .then(() => {
+  .then(async () => {
+    try {
+      await syncUploadsToDb();
+    } catch (error) {
+      console.error('Failed to sync uploads:', error);
+    }
+
     app.listen(PORT, () => {
       console.log(`Backend running on port ${PORT}`);
     });
@@ -182,4 +191,3 @@ initDb()
     console.error('Database init failed:', error);
     process.exit(1);
   });
-
