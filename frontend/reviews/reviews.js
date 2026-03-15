@@ -146,7 +146,7 @@ if (reviewForm && reviewNameInput && reviewContentInput) {
       await submitReview(name, content);
       reviewForm.reset();
       if (reviewFormStatus) {
-        reviewFormStatus.textContent = 'Review added.';
+        reviewFormStatus.textContent = 'Отзыв добавлен.';
       }
       await loadReviewsPage(1);
     } catch (error) {

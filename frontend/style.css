@@ -768,6 +768,16 @@ section.section-fabrics {
   max-width: 640px;
 }
 
+.tittle {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.sub-tittle {
+  font-size: 20px;
+  font-weight: 500;
+}
+
 .section-head h2 {
   font-family: "Nunito", system-ui, sans-serif;
   font-size: 32px;
@@ -1743,7 +1753,7 @@ section.section-fabrics {
 
 
 .section-slogan .tittle {
-  font-size: clamp(1.6rem, 6vw, 3rem);
+  font-size: 32px;
   color: #333333;
   width: 100%;
   max-width: none;
@@ -1776,7 +1786,7 @@ section.section-fabrics {
 
 .section-about .sub-tittle {
   color: #3a3a3a;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   width: 100%;
   line-height: 1.4;
@@ -2196,7 +2206,7 @@ section.section-fabrics {
 
 .section-production .sub-tittle {
   font-weight: 500;
-  font-size: 18px;
+  font-size: 20px;
   text-align: left;
 }
 
