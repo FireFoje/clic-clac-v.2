@@ -779,7 +779,7 @@ async function loadReviews() {
 
     container.replaceChildren(...latestReviews.map((review) => createReviewCard(review)));
     if (reviewStatus) {
-      reviewStatus.textContent = latestReviews.length ? '' : 'No reviews yet.';
+      reviewStatus.textContent = latestReviews.length ? '' : 'Отзывов пока нет.';
     }
   } catch (error) {
     container.replaceChildren();

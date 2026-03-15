@@ -101,7 +101,8 @@ img {
 .site-header-overlay {
   position: fixed;
   inset: 0 0 auto 0;
-  background: rgba(56, 44, 35, 0.5);
+  /* background: rgba(135, 119, 112, 0.9); */
+  background: rgba(56, 44, 35, 0.3);
   border-bottom: 0;
   backdrop-filter: none;
 }
